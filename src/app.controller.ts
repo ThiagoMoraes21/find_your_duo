@@ -1,12 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get("games")
+  getGames(): any[] {
+    return this.appService.getGames();
+  }
+
+  @Get("games/:id/ads")
+  getGamesAds(@Param("id") id: string): any[] {
+    return this.appService.getGamesAds(id);
+  }
+
+  @Get("ads/:id/discord")
+  getAdsDiscord(@Param("id") id: string): any {
+    return this.appService.getAdsDiscord(id);
+  }
+
+  @Post("ads")
+  createAds(): any[] {
+    return this.appService.createAds();
   }
 }
