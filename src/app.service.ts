@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from './services/prisma.service';
 
 @Injectable()
 export class AppService {
 
-  getGames(): any[] {
-    return ["test"];
+  constructor(private readonly prisma: PrismaService) {}
+
+  async getGames(): Promise<any[]> {
+    return this.prisma.game.findMany();
   }
 
   getAds(): any[] {

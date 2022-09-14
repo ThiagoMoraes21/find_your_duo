@@ -6,8 +6,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get("games")
-  getGames(): any[] {
-    return this.appService.getGames();
+  async getGames(): Promise<any[]> {
+    return await this.appService.getGames();
   }
 
   @Get("games/:id/ads")
